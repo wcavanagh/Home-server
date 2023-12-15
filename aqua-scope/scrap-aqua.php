@@ -15,13 +15,15 @@ $output = curl_exec($handle);
 $valuesObj = json_decode($output);
 $html = "<html><body>";
 
-$html.= "Uptime <span class='uptime'>".secondsToTime($valuesObj->uptime->value)." </span><br>";
-$html.= "Temperature <span class='uptime'>". floatval($valuesObj->temperature->value)/10 ."</span><br>";
-$html.= "Voltage <span class='uptime'>".$valuesObj->voltage->value." ". $valuesObj->voltage->scale ."</span><br>";
-$html.= "Battery <span class='uptime'>".$valuesObj->battery->value." ". $valuesObj->battery->scale ."</span><br>";
-$html.= "Pressure <span class='uptime'>". floatval($valuesObj->pressure->value)/1000 ."</span><br>";
-$html.= "Consumption <span class='uptime'>".$valuesObj->consumption->value." ". $valuesObj->consumption->scale." </span><br>";
-$html.= "Meter <span class='uptime'>".$valuesObj->meter->value ." ".$valuesObj->meter->scale." </span><br>";
+$html.= "Device ID <span class='Device-Id'>".$valuesObj->eid."</span><br>";
+$html.= "Uptime <span class='Uptime'>".secondsToTime($valuesObj->uptime->value)."</span><br>";
+$html.= "FlowState <span class='FlowState'>1</span><br>";
+$html.= "Water Consumption <span class='Water_Cons'>".$valuesObj->consumption->value."</span> ". $valuesObj->consumption->scale."<br>";
+$html.= "Pressure <span class='Pressure'>". floatval($valuesObj->pressure->value)/1000 ."</span><br>";
+$html.= "Ext_Water_Sensor <span class='Ext_Water_Sensor'>".$valuesObj->meter->value ."</span> ".$valuesObj->meter->scale."<br>";
+$html.= "Battery_Voltage <span class='Battery_Voltage'>".$valuesObj->voltage->value."</span> ". $valuesObj->voltage->scale ."<br>";
+$html.= "Water_Temperature <span class='Water_Temperature'>". floatval($valuesObj->temperature->value)/10 ."</span><br>";
+
 $html.="</body></html>";
 
 file_put_contents("device-1.html", $html);
